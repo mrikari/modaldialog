@@ -9,5 +9,5 @@
 
     button2.addEventListener('click', function () {
         console.log('Don\'t push.');
-    })
+    });
 })(window);
