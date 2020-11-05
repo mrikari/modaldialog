@@ -1,5 +1,5 @@
 (function (g) {
-
+    // pooling check
     var Selectors = {
         MODAL_BACKGROUND: 'modal-background'
     };
