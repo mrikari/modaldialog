@@ -2,12 +2,12 @@
 
     var Selectors = {
         MODAL_BACKGROUND: 'modal-background'
-    }
+    };
 
     var ModalDialog = function (options) {
         this.options = options || {};
         this.initialize();
-    }
+    };
 
     ModalDialog.prototype.initialize = function () {
         this.background = new ModalBackground(this.options.background);
@@ -15,23 +15,23 @@
         g.addEventListener('resize', function () {
             this.background.resize();
         }.bind(this));
-    }
+    };
 
     ModalDialog.prototype.open = function () {
         this.frame.generate(function () {
             this.background.show();
         }.bind(this));
-    }
+    };
 
     ModalDialog.prototype.close = function () {
         this.background.hide();
         this.frame.dispose();
-    }
+    };
 
     var ModalFrame = function (wrapper, element, option) {
         this.wrapper = wrapper;
         this.element = element;
-    }
+    };
 
     ModalFrame.prototype.generate = function (generated) {
         // タイトルの生成
@@ -40,30 +40,30 @@
         this.element.update(function () {
             generated.call();
         });
-    }
+    };
 
     ModalFrame.prototype.dispose = function () {
         // タイトルの削除
 
         // ボディの削除
         this.element.dispose();
-    }
+    };
 
     var FrameElement = function () {
 
-    }
+    };
 
     FrameElement.prototype.generate = function (generated) {
         generated.call();
-    }
+    };
 
     FrameElement.prototype.update = function (updated) {
         updated.call();
-    }
+    };
 
     FrameElement.prototype.dispose = function () {
 
-    }
+    };
 
     var ModalBackground = function (option) {
         this.option = option || {};
@@ -71,7 +71,7 @@
         this.height = this.option.height || g.innerHeight;
         this.body = this.find();
         this.initialize();
-    }
+    };
 
     ModalBackground.prototype.initialize = function () {
         var wrapper = g.document.getElementsByTagName('BODY')[0];
@@ -81,30 +81,30 @@
         }
         this.setStyles();
         this.setClickHandler(this.option.clickHandler);
-    }
+    };
 
     ModalBackground.prototype.find = function () {
         return g.document.getElementsByClassName(Selectors.MODAL_BACKGROUND)[0];
-    }
+    };
 
     ModalBackground.prototype.generate = function () {
         this.body = g.document.createElement('div');
         this.hide();
-    }
+    };
 
     ModalBackground.prototype.show = function () {
         this.body.setAttribute('class', Selectors.MODAL_BACKGROUND + ' show');
-    }
+    };
 
     ModalBackground.prototype.hide = function () {
         this.body.setAttribute('class', Selectors.MODAL_BACKGROUND + ' hide');
-    }
+    };
 
     ModalBackground.prototype.resize = function (x, y) {
         this.width = x === undefined ? g.innerWidth : x;
         this.height = x === undefined ? g.innerHeight : y;
         this.setStyles();
-    }
+    };
 
     /**
      * 動的なスタイルを設定する
@@ -122,5 +122,5 @@
         } else {
             this.body.addEventListener('click', function () { this.hide() }.bind(this));
         }
-    }
+    };
 })(window);
