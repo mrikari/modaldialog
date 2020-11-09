@@ -114,7 +114,7 @@
         this.body.setAttribute('style',
             'width:' + this.width + 'px;' +
             'height:' + this.height + 'px;');
-    };
+    }
 
     ModalBackground.prototype.setClickHandler = function (handler) {
         if (handler && typeof handler == 'function') {
@@ -122,5 +122,5 @@
         } else {
             this.body.addEventListener('click', function () { this.hide(); }.bind(this));
         }
-    };
+    }
 })(window);
